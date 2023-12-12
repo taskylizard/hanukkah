@@ -1,0 +1,13 @@
+[package]
+name = "hanukkah"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[workspace]
+resolver = "2"
+members = ["candle1"]
+
+[profile.release]
+opt-level = 3
