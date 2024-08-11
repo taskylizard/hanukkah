@@ -7,7 +7,7 @@ edition = "2021"
 
 [workspace]
 resolver = "2"
-members = ["candle1", "candle2"]
+members = ["candle1", "candle2", "candle3"]
 
 [profile.release]
 opt-level = 3
