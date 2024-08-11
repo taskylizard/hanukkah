@@ -11,6 +11,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "candle2"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde-jsonlines",
+]
+
+[[package]]
 name = "hanukkah"
 version = "0.1.0"
 

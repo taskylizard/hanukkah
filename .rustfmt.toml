@@ -1,0 +1,6 @@
+# require the shorthand instead of it being optional
+use_field_init_shorthand = true
+newline_style = "unix"
+max_width = 140
+chain_width = 100
+fn_call_width = 100

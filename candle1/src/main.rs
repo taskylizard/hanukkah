@@ -41,10 +41,7 @@ fn main() -> Result<()> {
         let last_name = customer.name.split_ascii_whitespace().last().unwrap();
         if let Some(phone_number) = string_to_phone_number(last_name) {
             if phone_number == customer.phone.replace('-', "") {
-                println!(
-                    "Phone number: {}, Phone: {}, Name: {}",
-                    phone_number, customer.phone, customer.name
-                );
+                println!("Phone number: {}, Phone: {}, Name: {}", phone_number, customer.phone, customer.name);
             }
         }
     }
