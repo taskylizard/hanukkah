@@ -1,6 +1,4 @@
-use serde::{Deserialize, Serialize};
-use serde_jsonlines::json_lines;
-use std::io::Result;
+use helper::prelude::*;
 
 #[derive(Debug, Deserialize, PartialEq, Serialize)]
 pub struct Customer {
@@ -35,15 +33,16 @@ fn string_to_phone_number(s: &str) -> Option<String> {
 }
 
 fn main() -> Result<()> {
-    let customers = json_lines("data/noahs-customers.jsonl")?.collect::<Result<Vec<Customer>>>()?;
+    let data = helper::load_jsonl::<Customer>("data/noahs-customers.jsonl")?;
 
-    for customer in customers {
+    for customer in data {
         let last_name = customer.name.split_ascii_whitespace().last().unwrap();
         if let Some(phone_number) = string_to_phone_number(last_name) {
             if phone_number == customer.phone.replace('-', "") {
-                println!("Phone number: {}, Phone: {}, Name: {}", phone_number, customer.phone, customer.name);
+                helper::print_solution(1, &customer.phone);
             }
         }
     }
+
     Ok(())
 }

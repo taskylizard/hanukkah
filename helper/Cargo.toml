@@ -1,0 +1,16 @@
+[package]
+name = "helper"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde-jsonlines.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+regex.workspace = true
+itertools.workspace = true
+rayon.workspace = true
+indicatif.workspace = true

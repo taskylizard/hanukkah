@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-serde-jsonlines = "0.6.0"
-serde = { version = "1.0.205", features = ["derive"] }
-chrono = "0.4.38"
+helper.workspace = true
+serde.workspace = true
+anyhow.workspace = true
+chrono.workspace = true

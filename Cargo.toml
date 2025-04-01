@@ -2,12 +2,30 @@
 name = "hanukkah"
 version = "0.1.0"
 edition = "2021"
-
-[dependencies]
+authors = ["taskylizard"]
+description = "Solutions for Hanukkah of Data 5784"
 
 [workspace]
-resolver = "2"
-members = ["candle1", "candle2", "candle3"]
+resolver = "3"
+members = ["candle1", "candle2", "candle3", "candle4", "candle5", "helper"]
+
+[workspace.dependencies]
+helper = { path = "./helper" }
+serde = { version = "1.0.209", features = ["derive"] }
+serde_json = "1.0.140"
+serde-jsonlines = "0.7"
+anyhow = "1.0"
+thiserror = "2.0.12"
+chrono = { version = "0.4.40", features = ["serde"] }
+regex = "1.11.1"
+itertools = "0.14.0"
+rayon = "1.8"
+indicatif = "0.17"
 
 [profile.release]
 opt-level = 3
+lto = true
+codegen-units = 1
+
+[profile.dev]
+debug = false

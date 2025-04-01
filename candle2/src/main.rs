@@ -1,6 +1,4 @@
-use serde::{Deserialize, Serialize};
-use serde_jsonlines::json_lines;
-use std::io::Result;
+use helper::prelude::*;
 
 #[derive(Debug, Deserialize, PartialEq, Serialize)]
 pub struct Customer {
@@ -38,8 +36,8 @@ fn main() -> Result<()> {
     let sesame_bagel = "BKY1573";
     let caraway_bagel = "BKY5717";
 
-    let customers = json_lines("data/noahs-customers.jsonl")?.collect::<Result<Vec<Customer>>>()?;
-    let orders = json_lines("data/noahs-orders.jsonl")?.collect::<Result<Vec<Order>>>()?;
+    let customers = helper::load_jsonl::<Customer>("data/noahs-customers.jsonl")?;
+    let orders = helper::load_jsonl::<Order>("data/noahs-orders.jsonl")?;
 
     let order = orders
         .into_iter()
@@ -60,6 +58,6 @@ fn main() -> Result<()> {
         .collect::<Vec<String>>()
         .join("\n");
 
-    println!("{:?}", customer);
+    helper::print_solution(2, customer);
     Ok(())
 }

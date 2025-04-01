@@ -1,5 +1,5 @@
 [package]
-name = "candle2"
+name = "candle4"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,3 +7,4 @@ edition = "2021"
 helper.workspace = true
 serde.workspace = true
 anyhow.workspace = true
+chrono.workspace = true

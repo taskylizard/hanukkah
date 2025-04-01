@@ -1,7 +1,5 @@
 use chrono::{Datelike, NaiveDate};
-use serde::{Deserialize, Serialize};
-use serde_jsonlines::json_lines;
-use std::io::Result;
+use helper::prelude::*;
 
 #[derive(Debug, Deserialize, PartialEq, Serialize)]
 struct Customer {
@@ -33,7 +31,7 @@ fn main() -> Result<()> {
     let years = [1915, 1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011];
     let city = "Jamaica";
 
-    let customers = json_lines("data/noahs-customers.jsonl")?.collect::<Result<Vec<Customer>>>()?;
+    let customers = helper::load_jsonl::<Customer>("data/noahs-customers.jsonl")?;
 
     let customer = customers
         .into_iter()
@@ -44,7 +42,6 @@ fn main() -> Result<()> {
             name: c.name,
             address: c.address,
             citystatezip: c.citystatezip,
-            // Parse the birthdate with chrono
             birthdate: NaiveDate::parse_from_str(&c.birthdate, "%Y-%m-%d").unwrap(),
             phone: c.phone,
             timezone: c.timezone,
@@ -52,10 +49,11 @@ fn main() -> Result<()> {
             long: c.long,
         })
         .filter(|c| years.contains(&c.birthdate.year()))
-        .filter(|c| c.birthdate.month() == 5 || c.birthdate.month() == 6)
-        .filter(|c| (c.birthdate.month() == 5 && c.birthdate.day() >= 21) || (c.birthdate.month() == 6 && c.birthdate.day() <= 22))
+        .filter(|c| c.birthdate.month() == 6 || c.birthdate.month() == 7)
+        .filter(|c| (c.birthdate.month() == 6 && c.birthdate.day() >= 21) || (c.birthdate.month() == 7 && c.birthdate.day() <= 22))
         .collect::<Vec<ParsedCustomer>>();
 
-    println!("{:?}", customer[0].phone);
+    helper::print_solution(3, customer[0].phone.clone());
+
     Ok(())
 }
